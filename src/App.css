@@ -1,11 +1,11 @@
 @font-face {
-  font-family: "Bebas Neue";
-  src: url("/fonts/bebas_neue/BebasNeue-Regular.otf");
+  font-family: "Roboto";
+  src: url("/fonts/Roboto-Regular.ttf");
 }
 
 #text {
   font-size: 70px !important;
-  font-family: "Bebas Neue";
+  font-family: "Roboto";
   margin-left: 55px;
   margin-top: 10px;
   color: white;
@@ -20,7 +20,7 @@
   margin-top: 50px;
 }
 #notif {
-  background-color: #e2792c !important;
+  background-color: #0099CC !important;
   width: 435px;
   height: 100vh;
 }
@@ -48,7 +48,7 @@
 
 #text-area {
   margin-top: -10px;
-  font-family: "Bebas Neue";
+  font-family: "Roboto";
   font-size: 30px;
   width: 750px;
   height: 250px;
@@ -58,27 +58,27 @@
 }
 
 #send {
-  font-family: "Bebas Neue";
+  font-family: "Roboto";
   font-size: 33px;
   width: 140px;
   height: 70px;
   margin-left: 20px;
   border-radius: 35px;
-  background-color: rgb(226, 121, 44);
-  border-color: rgb(226, 121, 44);
+  background-color:  	rgb(30,144,255);
+  border-color:  	rgb(30,144,255));
 }
 
 #button-color {
-  font-family: "Bebas Neue";
+  font-family: "Roboto";
   font-size: 28px;
-  background-color: rgb(226, 121, 44);
-  border-color: rgb(226, 121, 44);
+  background-color:  	rgb(30,144,255);
+  border-color:  	rgb(30,144,255);
   width: 100px;
   height: 50px;
 }
 
 #return-button {
-  font-family: "Bebas Neue";
+  font-family: "Roboto";
   font-size: 28px;
   width: 100px;
   height: 50px;
@@ -93,11 +93,11 @@
 }
 
 #font {
-  font-family: "Bebas Neue" !important;
+  font-family: "Roboto" !important;
   font-size: 17px;
 }
 #checkbox input:checked {
-  background-color: rgb(226, 121, 44) !important;
+  background-color:  	rgb(30,144,255) !important;
 }
 /* When the checkbox is checked, add a blue background
 .container input:checked ~ .checkmark { */

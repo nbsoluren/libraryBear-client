@@ -3,8 +3,6 @@ import { Input } from "antd";
 import "./App.css";
 import SendModal from "./SendModal";
 import axios from "axios";
-import logo from "./612394-mic-512.png";
-
 class App extends Component {
   componentDidMount() {
     this.getUserList();
@@ -12,9 +10,11 @@ class App extends Component {
   state = { text: "", users: [] };
 
   handleBroadcast = () => {
-    return axios.post("http://localhost:8080/broadcast", {
+    return axios.post("http://localhost:8080/message-user", {
       text: this.state.text,
-      users: this.state.users
+      users: this.state.users.map(user => ({
+        id: user.id
+      }))
     });
   };
 
@@ -59,12 +59,13 @@ class App extends Component {
 
   getUserList = () => {
     axios.get("http://localhost:8080/api/users").then(response => {
-      const { userList } = response.data;
-      console.log(response.data);
+      const userList  = response.data;
+      console.log("KILL ME")
       const userListNoCheck = userList.map(user => ({
         ...user,
         checked: false
       }));
+      console.log(userListNoCheck,userList)
       this.setState({ users: userListNoCheck });
     });
   };
@@ -78,13 +79,8 @@ class App extends Component {
 
     return (
       <div id="body">
-        <div id="notif">
-          <p id="text"> Notifications </p>
-        </div>
+
         <div id="container">
-          <div id="logo">
-            <img id="image" alt="example" src={logo} />
-          </div>
           <div id="input-button">
             <TextArea
               rows={10}
