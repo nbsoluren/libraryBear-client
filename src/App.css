@@ -1,0 +1,104 @@
+@font-face {
+  font-family: "Bebas Neue";
+  src: url("/fonts/bebas_neue/BebasNeue-Regular.otf");
+}
+
+#text {
+  font-size: 70px !important;
+  font-family: "Bebas Neue";
+  margin-left: 55px;
+  margin-top: 10px;
+  color: white;
+}
+
+#logo {
+  margin-left: 135px;
+  height: 490px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+}
+#notif {
+  background-color: #e2792c !important;
+  width: 435px;
+  height: 100vh;
+}
+#body {
+  background-color: #fafafa;
+  display: flex;
+  flex-direction: row;
+}
+#image {
+  border-radius: 245px;
+}
+#container {
+  display: flex;
+  flex-direction: column;
+}
+#input-button {
+  /* background-color: red; */
+  margin-left: 270px;
+  padding-top: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+
+#text-area {
+  margin-top: -10px;
+  font-family: "Bebas Neue";
+  font-size: 30px;
+  width: 750px;
+  height: 250px;
+  padding: 20px;
+  padding-top: 10px;
+  border-color: rgb(226, 121, 44);
+}
+
+#send {
+  font-family: "Bebas Neue";
+  font-size: 33px;
+  width: 140px;
+  height: 70px;
+  margin-left: 20px;
+  border-radius: 35px;
+  background-color: rgb(226, 121, 44);
+  border-color: rgb(226, 121, 44);
+}
+
+#button-color {
+  font-family: "Bebas Neue";
+  font-size: 28px;
+  background-color: rgb(226, 121, 44);
+  border-color: rgb(226, 121, 44);
+  width: 100px;
+  height: 50px;
+}
+
+#return-button {
+  font-family: "Bebas Neue";
+  font-size: 28px;
+  width: 100px;
+  height: 50px;
+}
+
+#checkall {
+  font-size: 10px !important;
+}
+
+.users {
+  font-size: 25px !important;
+}
+
+#font {
+  font-family: "Bebas Neue" !important;
+  font-size: 17px;
+}
+#checkbox input:checked {
+  background-color: rgb(226, 121, 44) !important;
+}
+/* When the checkbox is checked, add a blue background
+.container input:checked ~ .checkmark { */
+/* } */
