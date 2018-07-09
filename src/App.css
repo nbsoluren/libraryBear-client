@@ -54,12 +54,12 @@
   height: 250px;
   padding: 20px;
   padding-top: 10px;
-  border-color: rgb(226, 121, 44);
+  border-color: 	rgb(30,144,255);
 }
 
 #send {
   font-family: "Roboto";
-  font-size: 33px;
+  font-size: 18px;
   width: 140px;
   height: 70px;
   margin-left: 20px;
@@ -70,7 +70,7 @@
 
 #button-color {
   font-family: "Roboto";
-  font-size: 28px;
+  font-size: 18px;
   background-color:  	rgb(30,144,255);
   border-color:  	rgb(30,144,255);
   width: 100px;
@@ -79,7 +79,7 @@
 
 #return-button {
   font-family: "Roboto";
-  font-size: 28px;
+  font-size: 18px;
   width: 100px;
   height: 50px;
 }
