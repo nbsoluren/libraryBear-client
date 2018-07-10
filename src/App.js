@@ -80,7 +80,7 @@ class App extends Component {
   };
 
   getGroupList = () => {
-    axios.get("http://localhost:8080/api/users").then(response => {
+    axios.get("http://localhost:8080/api/groups").then(response => {
       const groupList  = response.data.data;
       this.setState({ groups: groupList });
     });
