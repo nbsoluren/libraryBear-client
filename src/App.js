@@ -1,8 +1,10 @@
 import React, { Component } from "react";
-import { Button, Input, notification } from "antd";
+import { Layout, Menu, Icon, Button, Input, notification } from "antd";
 import "./App.css";
 import SendModal from "./SendModal";
 import axios from "axios";
+
+const { Header, Sider, Content } = Layout;
 
 
 class App extends Component {
@@ -10,8 +12,15 @@ class App extends Component {
     this.getUserList();
     this.getGroupList();
   }
-
-  state = { groupname: '', text: "", users: [], groups: [], send: [] };
+  
+  state = {
+    groupname: '',
+    text: "",
+    users: [],
+    groups: [],
+    send: [],
+    collapsed: false
+  };
 
   handleBroadcast = () => {
     return axios.post("http://localhost:8080/api/message-users", {
