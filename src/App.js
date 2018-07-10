@@ -34,6 +34,15 @@ class App extends Component {
     });
   };
 
+  handleAddGroup = () => {
+    return axios.post("http://localhost:8080/api/groups", {
+      name: this.state.groupname,
+      users: this.state.users.map(user => {
+        return user.id;
+      })
+    });
+  };
+
   checkAll = e => {
     this.setState({
       users: this.state.users.map(user => ({
@@ -83,23 +92,41 @@ class App extends Component {
   };
 
   getGroupList = () => {
-    axios.get("http://localhost:8080/api/groups").then(response => {
+    axios.get("http://localhost:8080/api/users").then(response => {
       const groupList  = response.data.data;
       this.setState({ groups: groupList });
     });
   };
 
   handleTextChange = e => {
-    this.setState({ text: e.target.value });
+    this.setState({ text: e.target.value});
+  };
+  handleGroupsChange = e => {
+    this.setState({ groupname: e.target.value});
   };
 
   render() {
     const { TextArea } = Input;
+    const { GroupsArea} = Input;
 
     return (
       <div id="body">
 
         <div id="container">
+
+        <div id="input-button">
+            <TextArea
+              rows={1}
+              id="group-name-area"
+              onChange={this.handleGroupChange}
+            />
+            <SendModal
+              onSubmit={this.handleAddGroup}
+              userList={this.state.users}
+              groupList={this.state.groups}
+            />
+          </div>
+
           <div id="input-button">
             <TextArea
               rows={10}
