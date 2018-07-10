@@ -113,10 +113,10 @@ class App extends Component {
       <div id="body">
 
         <div id="container">
-
+        
         <div id="input-button">
             <TextArea
-              rows={1}
+              rows={4}
               id="group-name-area"
               onChange={this.handleGroupChange}
             />
