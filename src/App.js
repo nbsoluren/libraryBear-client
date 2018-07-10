@@ -114,6 +114,7 @@ class App extends Component {
 
         <div id="container">
         
+        <h1> Create group </h1>
         <div id="input-button">
             <TextArea
               rows={4}
@@ -126,7 +127,8 @@ class App extends Component {
               groupList={this.state.groups}
             />
           </div>
-
+          
+        <h1> Send a Broadcast </h1>
           <div id="input-button">
             <TextArea
               rows={10}
