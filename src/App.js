@@ -18,6 +18,17 @@ var uniq = ids.reduce(function(a,b){
   return uniq
 }
 
+function deleteUnchecked(userList) {
+  var checked = [];
+  for (let i = 0; i < userList.length; i++) {
+    if (req.body.users[i].checked === true) {
+      let num = parseInt(req.body.users[i].id, 10);
+      approvedUsers.push(num);
+    }
+  }
+  
+}
+
 class App extends Component {
   componentDidMount() {
     this.getUserList();
@@ -26,11 +37,12 @@ class App extends Component {
   state = { text: "", users: [], groups: [] };
 
   handleBroadcast = () => {
-    return axios.post("http://localhost:8080/api/message-user", {
+    return axios.post("http://localhost:8080/api/message-users", {
       text: this.state.text,
-      users: this.state.users.map(user => ({
-        id: user.id
-      }))
+      users: this.state.users.map(user => {
+        if(user.checked == true) return user.id;
+      })
+
     });
   };
 
