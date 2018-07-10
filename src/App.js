@@ -4,19 +4,20 @@ import "./App.css";
 import SendModal from "./SendModal";
 import axios from "axios";
 
-export function deleteDuplicate(userList) {
+function deleteDuplicate(userList) {
   var ids = [];
   userList.forEach(function(user) {
       ids.push(user.id);
   });
 
-  var uniqueIds = [];
-  $.each(ids, function(i, el){
-      if($.inArray(el, uniqueIds) === -1) uniqueIds.push(el);
-  });
-  return uniqueIds
-  }
   
+var uniq = ids.reduce(function(a,b){
+        if (a.indexOf(b) < 0 ) a.push(b);
+        return a;
+    },[]);
+  return uniq
+  }
+
 class App extends Component {
   componentDidMount() {
     this.getUserList();
