@@ -23,9 +23,7 @@ class App extends Component {
   handleAddGroup = () => {
     return axios.post("http://localhost:8080/api/groups", {
       name: this.state.groupname,
-      id: this.state.send.map(user => {
-        return user.id;
-      })
+      id: this.state.send
     });
   };
 
@@ -103,9 +101,10 @@ class App extends Component {
       <div id="body">
 
         <div id="container">
+  
         
-        <h1> Create group </h1>
         <div id="input-button">
+        <h1> Create group </h1>
             <TextArea
               rows={4}
               id="group-name-area"
@@ -118,8 +117,8 @@ class App extends Component {
             />
           </div>
           
-        <h1> Send a Broadcast </h1>
           <div id="input-button">
+          <h1> Send a Broadcast </h1>
             <TextArea
               rows={10}
               id="text-area"
