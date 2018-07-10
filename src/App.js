@@ -50,7 +50,7 @@ class App extends Component {
     return axios.post("http://localhost:8080/api/groups", {
       name: this.state.groupname,
       users: this.state.users.map(user => {
-        return user.id;
+        if(user.checked == true) return user.id;
       })
     });
   };
