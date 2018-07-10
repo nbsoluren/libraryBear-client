@@ -58,7 +58,6 @@ class userCheckbox extends Component {
         })
       })
     }
-    console.log(users)
 
     return users
   }
