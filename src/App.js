@@ -3,6 +3,20 @@ import { Input } from "antd";
 import "./App.css";
 import SendModal from "./SendModal";
 import axios from "axios";
+
+export function deleteDuplicate(userList) {
+  var ids = [];
+  userList.forEach(function(user) {
+      ids.push(user.id);
+  });
+
+  var uniqueIds = [];
+  $.each(ids, function(i, el){
+      if($.inArray(el, uniqueIds) === -1) uniqueIds.push(el);
+  });
+  return uniqueIds
+  }
+  
 class App extends Component {
   componentDidMount() {
     this.getUserList();
