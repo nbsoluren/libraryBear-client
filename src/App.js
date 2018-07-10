@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Input } from "antd";
+import { Button, Input } from "antd";
 import "./App.css";
 import SendModal from "./SendModal";
 import axios from "axios";
@@ -24,6 +24,14 @@ class App extends Component {
     return axios.post("http://localhost:8080/api/groups", {
       name: this.state.groupname,
       users: this.state.send
+    }).then(() => {
+      this.getGroupList();
+    })
+  };
+
+  handleDeleteGroup = () => {
+    const string = 'http://localhost:8080/api/groups/' + this.state.groupname;
+    return axios.post(string, {
     }).then(() => {
       this.getGroupList();
     })
@@ -90,6 +98,7 @@ class App extends Component {
               groupList={this.state.groups}
               onChange={this.handleUsersChange}
             />
+            <Button type="primary" onClick={this.handleDeleteGroup} id="send">Delete</Button>
           </div>
           
           <div id="input-button">
