@@ -70,9 +70,7 @@ class SendModal extends Component {
         >
           <UserCheckbox
             users={this.props.userList}
-            checkAll={this.props.checkAll}
-            checkUser={this.props.checkUser}
-            unCheckUser={this.props.unCheckUser}
+            groups={this.props.groupList}
           />
         </Modal>
       </div>

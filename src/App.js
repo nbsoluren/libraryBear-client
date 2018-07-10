@@ -16,16 +16,17 @@ var uniq = ids.reduce(function(a,b){
         return a;
     },[]);
   return uniq
-  }
+}
 
 class App extends Component {
   componentDidMount() {
     this.getUserList();
+    this.getGroupList();
   }
-  state = { text: "", users: [] };
+  state = { text: "", users: [], groups: [] };
 
   handleBroadcast = () => {
-    return axios.post("http://localhost:8080/message-user", {
+    return axios.post("http://localhost:8080/api/message-user", {
       text: this.state.text,
       users: this.state.users.map(user => ({
         id: user.id
@@ -40,7 +41,6 @@ class App extends Component {
         checked: e.target.checked
       }))
     });
-    console.log(this.state.users);
   };
 
   checkUser = userId => {
@@ -55,7 +55,6 @@ class App extends Component {
         return user;
       })
     });
-    console.log(this.state.users);
   };
 
   unCheckUser = userId => {
@@ -83,6 +82,13 @@ class App extends Component {
     });
   };
 
+  getGroupList = () => {
+    axios.get("http://localhost:8080/api/users").then(response => {
+      const groupList  = response.data.data;
+      this.setState({ groups: groupList });
+    });
+  };
+
   handleTextChange = e => {
     this.setState({ text: e.target.value });
   };
@@ -103,9 +109,7 @@ class App extends Component {
             <SendModal
               onSubmit={this.handleBroadcast}
               userList={this.state.users}
-              checkAll={this.checkAll}
-              checkUser={this.checkUser}
-              unCheckUser={this.unCheckUser}
+              groupList={this.state.groups}
             />
           </div>
         </div>
