@@ -21,7 +21,7 @@ class App extends Component {
   };
 
   handleAddGroup = () => {
-    return axios.delete("http://localhost:8080/api/groups", {
+    return axios.post("http://localhost:8080/api/groups", {
       name: this.state.groupname,
       users: this.state.send
     }).then(() => {
@@ -31,7 +31,7 @@ class App extends Component {
 
   handleDeleteGroup = () => {
     const string = 'http://localhost:8080/api/groups/' + this.state.groupname;
-    return axios.post(string, {
+    return axios.delete(string, {
     }).then(() => {
       this.getGroupList();
     })
