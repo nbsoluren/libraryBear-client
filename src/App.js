@@ -59,13 +59,11 @@ class App extends Component {
 
   getUserList = () => {
     axios.get("http://localhost:8080/api/users").then(response => {
-      const userList  = response.data;
-      console.log("KILL ME")
+      const userList  = response.data.data;
       const userListNoCheck = userList.map(user => ({
         ...user,
         checked: false
       }));
-      console.log(userListNoCheck,userList)
       this.setState({ users: userListNoCheck });
     });
   };
