@@ -10,14 +10,12 @@ class App extends Component {
     this.getUserList();
     this.getGroupList();
   }
-  state = { text: "", users: [], groups: [] };
+  state = { text: "", users: [], groups: [], send: ['2044645818940106'] };
 
   handleBroadcast = () => {
     return axios.post("http://localhost:8080/api/message-users", {
-      text: this.state.text,
-      users: this.state.users.map(user => {
-        return user.id;
-      })
+      message: this.state.text,
+      id: this.state.send
 
     });
   };
@@ -25,7 +23,7 @@ class App extends Component {
   handleAddGroup = () => {
     return axios.post("http://localhost:8080/api/groups", {
       name: this.state.groupname,
-      users: this.state.users.map(user => {
+      id: this.state.send.map(user => {
         return user.id;
       })
     });
@@ -92,6 +90,10 @@ class App extends Component {
   handleGroupsChange = e => {
     this.setState({ groupname: e.target.value});
   };
+  handleUsersChange = value => {
+    // console.log('onChange', value)
+    this.setState({ send: value });
+  }
 
   render() {
     const { TextArea } = Input;
@@ -127,6 +129,7 @@ class App extends Component {
               onSubmit={this.handleBroadcast}
               userList={this.state.users}
               groupList={this.state.groups}
+              onChange={this.handleUsersChange}
             />
           </div>
         </div>

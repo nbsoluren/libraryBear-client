@@ -71,6 +71,7 @@ class SendModal extends Component {
           <UserCheckbox
             users={this.props.userList}
             groups={this.props.groupList}
+            onChange={this.props.onChange}
           />
         </Modal>
       </div>
