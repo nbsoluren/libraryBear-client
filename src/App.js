@@ -3,6 +3,7 @@ import { Layout, Menu, Icon, Button, Input, notification } from "antd";
 import "./App.css";
 import SendModal from "./SendModal";
 import axios from "axios";
+import logo from './bear.gif';
 
 const { Header, Sider, Content } = Layout;
 
@@ -26,7 +27,6 @@ class App extends Component {
     return axios.post("http://localhost:8080/api/message-users", {
       message: this.state.text,
       id: this.state.send
-
     });
   };
 
@@ -35,7 +35,9 @@ class App extends Component {
       name: this.state.groupname,
       users: this.state.send
     }).then(() => {
-      this.getGroupList();
+      setTimeout(() => {
+        window.location.reload()
+      }, 2000)
     })
   };
 
@@ -43,8 +45,10 @@ class App extends Component {
     const string = 'http://localhost:8080/api/groups/' + this.state.groupname;
     return axios.delete(string, {
     }).then(() => {
-      this.getGroupList();
       this.openNotification();
+      setTimeout(() => {
+        window.location.reload()
+      }, 2000)
     })
   };
 
@@ -97,48 +101,75 @@ class App extends Component {
     });
   };
 
+  toggle = () => {
+    this.setState({
+      collapsed: !this.state.collapsed,
+    });
+  }
+
   render() {
     const { TextArea } = Input;
     const { GroupsArea} = Input;
 
     return (
-      <div id="body">
-
-        <div id="container">
-  
-        
-        <div id="input-button">
-        <h1> Create group </h1>
-            <TextArea
-              rows={4}
-              id="group-name-area"
-              onChange={this.handleGroupsChange}
+      <Layout style={{height:"100vh"}}>
+        <Sider
+          trigger={null}
+          collapsible
+          collapsed={this.state.collapsed}
+        >
+          <img id="logo" src={logo} />
+          <Menu theme="dark" mode="inline" defaultSelectedKeys={['2']}>
+            <Menu.Item key="1">
+              <Icon type="team" />
+              <span>Add or Delete Groups</span>
+            </Menu.Item>
+            <Menu.Item key="2">
+              <Icon type="message" />
+              <span>Broadcast</span>
+            </Menu.Item>
+          </Menu>
+        </Sider>
+        <Layout>
+          <Header style={{ background: '#fff', padding: '0 0 0 1' }}>
+            <Icon
+              className="trigger"
+              type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
+              onClick={this.toggle}
             />
-            <SendModal
-              onSubmit={this.handleAddGroup}
-              userList={this.state.users}
-              groupList={this.state.groups}
-              onChange={this.handleUsersChange}
-            />
-            <Button type="primary" onClick={this.handleDeleteGroup} id="send">Delete</Button>
-          </div>
-          
-          <div id="input-button">
-          <h1> Send a Broadcast </h1>
-            <TextArea
-              rows={10}
-              id="text-area"
-              onChange={this.handleTextChange}
-            />
-            <SendModal
-              onSubmit={this.handleBroadcast}
-              userList={this.state.users}
-              groupList={this.state.groups}
-              onChange={this.handleUsersChange}
-            />
-          </div>
-        </div>
-      </div>
+          </Header>
+          <Content style={{ margin: '24px 16px', padding: '24px', background: '#fff' }}>
+            <div id="input-button">
+              <TextArea
+                rows={4}
+                id="group-name-area"
+                onChange={this.handleGroupsChange}
+              />
+              <SendModal
+                onSubmit={this.handleAddGroup}
+                userList={this.state.users}
+                groupList={this.state.groups}
+                onChange={this.handleUsersChange}
+              />
+              <Button type="primary" onClick={this.handleDeleteGroup} id="send">Delete</Button>
+            </div>
+            
+            <div id="input-button">
+              <TextArea
+                rows={10}
+                id="text-area"
+                onChange={this.handleTextChange}
+              />
+              <SendModal
+                onSubmit={this.handleBroadcast}
+                userList={this.state.users}
+                groupList={this.state.groups}
+                onChange={this.handleUsersChange}
+              />
+            </div>
+          </Content>
+        </Layout>
+      </Layout>
     );
   }
 }

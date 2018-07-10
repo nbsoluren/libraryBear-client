@@ -12,9 +12,9 @@
 }
 
 #logo {
-  margin-left: 135px;
-  height: 490px;
-  display: flex;
+  margin: auto;
+  height: 150px;
+  display: block;
   align-items: center;
   justify-content: center;
   margin-top: 50px;
