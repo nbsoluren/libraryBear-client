@@ -4,30 +4,6 @@ import "./App.css";
 import SendModal from "./SendModal";
 import axios from "axios";
 
-function deleteDuplicate(userList) {
-  var ids = [];
-  userList.forEach(function(user) {
-      ids.push(user.id);
-  });
-
-  
-var uniq = ids.reduce(function(a,b){
-        if (a.indexOf(b) < 0 ) a.push(b);
-        return a;
-    },[]);
-  return uniq
-}
-
-function deleteUnchecked(userList) {
-  var checked = [];
-  for (let i = 0; i < userList.length; i++) {
-    if (req.body.users[i].checked === true) {
-      let num = parseInt(req.body.users[i].id, 10);
-      approvedUsers.push(num);
-    }
-  }
-  
-}
 
 class App extends Component {
   componentDidMount() {
@@ -40,7 +16,7 @@ class App extends Component {
     return axios.post("http://localhost:8080/api/message-users", {
       text: this.state.text,
       users: this.state.users.map(user => {
-        if(user.checked == true) return user.id;
+        return user.id;
       })
 
     });
@@ -50,7 +26,7 @@ class App extends Component {
     return axios.post("http://localhost:8080/api/groups", {
       name: this.state.groupname,
       users: this.state.users.map(user => {
-        if(user.checked == true) return user.id;
+        return user.id;
       })
     });
   };
@@ -64,33 +40,33 @@ class App extends Component {
     });
   };
 
-  checkUser = userId => {
-    this.setState({
-      users: this.state.users.map(user => {
-        if (userId === user.id) {
-          return {
-            ...user,
-            checked: true
-          };
-        }
-        return user;
-      })
-    });
-  };
+  // checkUser = userId => {
+  //   this.setState({
+  //     users: this.state.users.map(user => {
+  //       if (userId === user.id) {
+  //         return {
+  //           ...user,
+  //           checked: true
+  //         };
+  //       }
+  //       return user;
+  //     })
+  //   });
+  // };
 
-  unCheckUser = userId => {
-    this.setState({
-      users: this.state.users.map(user => {
-        if (userId === user.id) {
-          return {
-            ...user,
-            checked: false
-          };
-        }
-        return user;
-      })
-    });
-  };
+  // unCheckUser = userId => {
+  //   this.setState({
+  //     users: this.state.users.map(user => {
+  //       if (userId === user.id) {
+  //         return {
+  //           ...user,
+  //           checked: false
+  //         };
+  //       }
+  //       return user;
+  //     })
+  //   });
+  // };
 
   getUserList = () => {
     axios.get("http://localhost:8080/api/users").then(response => {
