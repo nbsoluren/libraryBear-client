@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Input } from "antd";
+import { Button, Input, notification } from "antd";
 import "./App.css";
 import SendModal from "./SendModal";
 import axios from "axios";
@@ -10,6 +10,7 @@ class App extends Component {
     this.getUserList();
     this.getGroupList();
   }
+
   state = { groupname: '', text: "", users: [], groups: [], send: [] };
 
   handleBroadcast = () => {
@@ -34,6 +35,7 @@ class App extends Component {
     return axios.delete(string, {
     }).then(() => {
       this.getGroupList();
+      this.openNotification();
     })
   };
 
@@ -74,6 +76,17 @@ class App extends Component {
     // console.log('onChange', value)
     this.setState({ send: value });
   }
+
+  openNotification = () => {
+    notification.config({
+      top: 110
+    });
+    notification.open({
+      placement: "topLeft",
+      message: "Library Bear",
+      description: "Library Bear deleted a group"
+    });
+  };
 
   render() {
     const { TextArea } = Input;
